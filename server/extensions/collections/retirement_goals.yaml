@@ -1,0 +1,37 @@
+collections:
+  retirement_goals:
+    collection: retirement_goals
+    meta:
+      icon: target
+      color: '#666666'
+      description: 'User retirement goals and planning'
+    schema:
+      user: uuid
+        meta:
+          interface: many-to-one
+          special: ['m2o']
+      target_age: integer
+      current_age: integer
+      monthly_expenses: decimal
+      inflation_rate: decimal
+        default: 6.0
+      expected_returns: decimal
+        default: 8.0
+      current_savings: decimal
+      monthly_savings: decimal
+      risk_profile: string
+        choices:
+          - conservative
+          - moderate
+          - aggressive
+      retirement_corpus: decimal
+      completion_probability: decimal
+      safe_withdrawal_rate: decimal
+      monte_carlo_simulation: json
+      last_updated: timestamp
+      status: string
+        choices:
+          - active
+          - archived
+          - completed
+      notes: text 

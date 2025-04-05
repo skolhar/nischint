@@ -1,0 +1,26 @@
+collections:
+  wiki_entries:
+    collection: wiki_entries
+    meta:
+      icon: book-open
+      color: '#666666'
+      description: 'Comprehensive retirement planning wiki entries'
+    permissions:
+      public:
+        read:
+          - id
+          - title
+          - content
+          - slug
+          - parent
+          - order
+          - published
+          - published_at
+          - last_updated
+          - tags
+          - related_entries
+          - author
+          - views
+        filter:
+          published:
+            _eq: true 

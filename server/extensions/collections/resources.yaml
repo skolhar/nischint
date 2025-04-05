@@ -1,0 +1,35 @@
+collections:
+  resources:
+    collection: resources
+    meta:
+      icon: book
+      color: '#666666'
+      description: 'Retirement planning resources including articles, videos, and podcasts'
+    schema:
+      name: string
+      description: text
+      type: string
+        choices:
+          - article
+          - video
+          - podcast
+          - book
+          - news
+      url: string
+      thumbnail: uuid
+        meta:
+          interface: file-image
+      language: string
+        default: en
+      tags: json
+      published: boolean
+        default: false
+      published_at: timestamp
+      author: string
+      content: text
+      duration: integer
+        comment: 'Duration in minutes (for videos/podcasts)'
+      rating: integer
+        default: 0
+      views: integer
+        default: 0 

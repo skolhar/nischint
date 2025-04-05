@@ -1,0 +1,37 @@
+collections:
+  investment_portfolios:
+    collection: investment_portfolios
+    meta:
+      icon: wallet
+      color: '#666666'
+      description: 'User investment portfolios and tracking'
+    schema:
+      user: uuid
+        meta:
+          interface: many-to-one
+          special: ['m2o']
+      name: string
+      description: text
+      assets: json
+        meta:
+          interface: input-multiline
+          options:
+            placeholder: 'JSON array of assets with type, amount, and allocation'
+      total_value: decimal
+      allocation: json
+        meta:
+          interface: input-multiline
+          options:
+            placeholder: 'JSON object with asset class allocations'
+      last_updated: timestamp
+      performance: json
+        meta:
+          interface: input-multiline
+          options:
+            placeholder: 'JSON object with performance metrics'
+      risk_score: decimal
+      status: string
+        choices:
+          - active
+          - archived
+      notes: text 
