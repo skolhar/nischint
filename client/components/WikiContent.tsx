@@ -1,17 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-
-interface WikiEntry {
-  id: string;
-  title: string;
-  content: string;
-  slug: string;
-  parent: string | null;
-  order: number;
-  published: boolean;
-  published_at: string;
-}
+import { WikiEntry } from './WikiSidebar';
 
 interface WikiContentProps {
   entries: WikiEntry[];
@@ -24,7 +14,7 @@ export default function WikiContent({ entries }: WikiContentProps) {
 
   if (!currentEntry) {
     return (
-      <div className="card">
+      <div className="prose dark:prose-invert max-w-none">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           Welcome to the Retirement Planning Wiki
         </h2>
@@ -36,18 +26,40 @@ export default function WikiContent({ entries }: WikiContentProps) {
   }
 
   return (
-    <div className="card">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-        {currentEntry.title}
-      </h2>
+    <article className="prose dark:prose-invert max-w-none">
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          {currentEntry.title}
+        </h1>
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <span>Last updated: {new Date(currentEntry.published_at).toLocaleDateString()}</span>
+        </div>
+      </header>
+
       <div className="prose dark:prose-invert max-w-none">
         <div dangerouslySetInnerHTML={{ __html: currentEntry.content }} />
       </div>
-      <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Last updated: {new Date(currentEntry.published_at).toLocaleDateString()}
-        </p>
-      </div>
-    </div>
+
+      <footer className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex justify-between items-center">
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            <span>Need help? </span>
+            <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">
+              Contact our support team
+            </a>
+          </div>
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            <span>Was this article helpful? </span>
+            <button className="text-blue-600 dark:text-blue-400 hover:underline">
+              Yes
+            </button>
+            <span className="mx-2">·</span>
+            <button className="text-blue-600 dark:text-blue-400 hover:underline">
+              No
+            </button>
+          </div>
+        </div>
+      </footer>
+    </article>
   );
 } 

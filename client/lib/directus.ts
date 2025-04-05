@@ -1,4 +1,5 @@
 import { createDirectus, rest, readItems, readItem, createItem, updateItem, deleteItem } from '@directus/sdk'
+import { RetirementGoal, InvestmentPortfolio } from '@/types'
 
 const directus = createDirectus(process.env.NEXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8055')
   .with(rest())
@@ -8,7 +9,11 @@ export async function getResources() {
     console.log('Fetching resources from:', process.env.NEXT_PUBLIC_DIRECTUS_URL);
     const resources = await directus.request(
       readItems('resources', {
-        fields: ['*', 'category.*'],
+        filter: {
+          published: {
+            _eq: true,
+          },
+        },
         sort: ['-published_at'],
       })
     );
@@ -25,20 +30,10 @@ export async function getWikiEntries() {
     console.log('Fetching wiki entries from:', process.env.NEXT_PUBLIC_DIRECTUS_URL);
     const entries = await directus.request(
       readItems('wiki_entries', {
-        fields: [
-          'id',
-          'title',
-          'content',
-          'slug',
-          'parent',
-          'order',
-          'published',
-          'published_at'
-        ],
         filter: {
           published: {
-            _eq: true
-          }
+            _eq: true,
+          },
         },
         sort: ['order'],
       })
@@ -66,15 +61,38 @@ export async function getRetirementPlans() {
   }
 }
 
-export async function getInvestmentPortfolios() {
+export async function getRetirementGoals(userId: string): Promise<RetirementGoal[]> {
+  try {
+    const goals = await directus.request(
+      readItems('retirement_goals', {
+        filter: {
+          user_id: {
+            _eq: userId,
+          },
+        },
+        sort: ['-created_at'],
+      })
+    );
+    return goals as RetirementGoal[];
+  } catch (error) {
+    console.error('Error fetching retirement goals:', error);
+    return [];
+  }
+}
+
+export async function getInvestmentPortfolios(userId: string): Promise<InvestmentPortfolio[]> {
   try {
     const portfolios = await directus.request(
       readItems('investment_portfolios', {
-        fields: ['*', 'user.*', 'assets.*'],
-        sort: ['-date_created'],
+        filter: {
+          user_id: {
+            _eq: userId,
+          },
+        },
+        sort: ['-created_at'],
       })
     );
-    return portfolios;
+    return portfolios as InvestmentPortfolio[];
   } catch (error) {
     console.error('Error fetching investment portfolios:', error);
     return [];

@@ -65,22 +65,25 @@ module.exports = {
                 color: 'rgb(var(--primary-color))',
               },
             },
+            h1: {
+              fontWeight: '700',
+              color: 'inherit',
+            },
+            h2: {
+              fontWeight: '600',
+              color: 'inherit',
+            },
+            h3: {
+              fontWeight: '600',
+              color: 'inherit',
+            },
             strong: {
               color: 'inherit',
             },
             code: {
               color: 'inherit',
             },
-            h1: {
-              color: 'inherit',
-            },
-            h2: {
-              color: 'inherit',
-            },
-            h3: {
-              color: 'inherit',
-            },
-            h4: {
+            figcaption: {
               color: 'inherit',
             },
           },

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRightIcon, BookOpenIcon, CalculatorIcon, ChartBarIcon } from '@heroicons/react/24/outline'
+import { ArrowRightIcon, BookOpenIcon, CalculatorIcon, ChartBarIcon, DocumentTextIcon, AcademicCapIcon } from '@heroicons/react/24/outline'
 
 export default function Home() {
 	const features = [
@@ -60,25 +60,92 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* Features Section */}
-			<section className="py-20">
+			{/* Resources Highlight Section */}
+			<section className="py-16 bg-white dark:bg-gray-800">
 				<div className="container mx-auto px-4">
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-						{features.map((feature) => (
-							<Link
-								key={feature.title}
-								href={feature.href}
-								className="card hover:shadow-md transition-shadow"
-							>
-								<feature.icon className="h-12 w-12 text-blue-600 dark:text-blue-400 mb-4" />
-								<h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-									{feature.title}
-								</h3>
-								<p className="text-gray-600 dark:text-gray-400">
-									{feature.description}
-								</p>
+					<div className="flex items-center justify-between mb-8">
+						<h2 className="text-3xl font-bold text-gray-900 dark:text-white">Popular Resources</h2>
+						<Link href="/resources" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+							View All
+							<ArrowRightIcon className="ml-2 h-5 w-5" />
+						</Link>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{/* Resource Cards */}
+						<div className="card group hover:shadow-lg transition-all duration-300">
+							<div className="aspect-video bg-gray-100 dark:bg-gray-700 rounded-t-lg overflow-hidden">
+								<div className="w-full h-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+									<DocumentTextIcon className="h-12 w-12 text-white" />
+								</div>
+							</div>
+							<div className="p-6">
+								<h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">Understanding NPS</h3>
+								<p className="text-gray-600 dark:text-gray-400 mb-4">A comprehensive guide to National Pension System and its benefits for retirement planning.</p>
+								<Link href="/resources" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+									Read More
+									<ArrowRightIcon className="ml-2 h-5 w-5" />
+								</Link>
+							</div>
+						</div>
+						{/* Add more resource cards here */}
+					</div>
+				</div>
+			</section>
+
+			{/* Wiki Highlight Section */}
+			<section className="py-16 bg-gray-50 dark:bg-gray-900">
+				<div className="container mx-auto px-4">
+					<div className="flex items-center justify-between mb-8">
+						<h2 className="text-3xl font-bold text-gray-900 dark:text-white">Featured Wiki Articles</h2>
+						<Link href="/wiki" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+							View All
+							<ArrowRightIcon className="ml-2 h-5 w-5" />
+						</Link>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+						<div className="card bg-white dark:bg-gray-800 p-6 hover:shadow-lg transition-all duration-300">
+							<div className="flex items-start space-x-4">
+								<div className="bg-blue-100 dark:bg-blue-900/20 p-3 rounded-lg">
+									<AcademicCapIcon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+								</div>
+								<div>
+									<h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Retirement Planning Basics</h3>
+									<p className="text-gray-600 dark:text-gray-400">Learn the fundamentals of retirement planning and how to get started.</p>
+								</div>
+							</div>
+						</div>
+						{/* Add more wiki cards here */}
+					</div>
+				</div>
+			</section>
+
+			{/* Dashboard Preview Section */}
+			<section className="py-16 bg-white dark:bg-gray-800">
+				<div className="container mx-auto px-4">
+					<div className="flex items-center justify-between mb-8">
+						<h2 className="text-3xl font-bold text-gray-900 dark:text-white">Your Retirement Dashboard</h2>
+						<Link href="/dashboard" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+							Go to Dashboard
+							<ArrowRightIcon className="ml-2 h-5 w-5" />
+						</Link>
+					</div>
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+						<div className="card p-6">
+							<h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Retirement Calculator</h3>
+							<p className="text-gray-600 dark:text-gray-400 mb-4">Plan your retirement goals with our advanced calculator and Monte Carlo simulations.</p>
+							<Link href="/dashboard/calculator" className="btn-primary inline-flex items-center">
+								Calculate Now
+								<CalculatorIcon className="ml-2 h-5 w-5" />
 							</Link>
-						))}
+						</div>
+						<div className="card p-6">
+							<h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Portfolio Tracker</h3>
+							<p className="text-gray-600 dark:text-gray-400 mb-4">Monitor your investments and track your progress towards retirement goals.</p>
+							<Link href="/dashboard/portfolio" className="btn-primary inline-flex items-center">
+								View Portfolio
+								<ChartBarIcon className="ml-2 h-5 w-5" />
+							</Link>
+						</div>
 					</div>
 				</div>
 			</section>
